@@ -27,7 +27,7 @@
                     <a href="getUrFilm.html">Movies</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="getUrFilmContact.html">Contact</a>
                 </li>
             </ul>
         </div>
@@ -43,7 +43,7 @@
 <script src="getUrFilmJS.js"></script>
 
 <!-- seacrh bar-->
-	Enter movie:<br>
+	<h4 id="Enter_movie">Enter Movie:<h4>
 <input type="text" id="userInput" value=""/>
 <input type="button" onClick="getSimilarFilms()" value = "click"/>
    
@@ -63,9 +63,9 @@
   <input type="button" onClick="getOptions()" class="dDButton" value ="Filter" />
   
    <div id="dDFilter" class="dDContent">
-     <li onClick="sortByRating()">Rating</li>
-     <li >Length</li>
-     <li >Year</li>
+     <li onClick="filterRating()">Rating</li>
+     <li onClick="filterLength()">Length</li>
+     <li onClick="filterYear()">Year</li>
    </div>
 
 </div>

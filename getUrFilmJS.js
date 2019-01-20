@@ -26,7 +26,24 @@ window.onclick = function(event) {
 //METHOD FOR FILTERING 
 
 //SORT BY FILTER
-function sortByRating(){
+
+
+//Sort by rating 
+function sortByRating(movieA, movieB){
+
+if(movieA.rating < movieB.rating){
+   return -1;
+}
+if(movieA.rating > movieB.rating){
+   return 1;
+}
+return 0;
+
+}
+
+
+
+function filterRating(){
 
 
 let request = new XMLHttpRequest();
@@ -39,11 +56,8 @@ let films = JSON.parse(request.response);
 
  createTable();
   
+ films.sort(sortByRating);
 
- films.sort(compare(films.rating));
-
-
-   
 
  for(let j = 0; j < films.length; j++){
 
@@ -62,17 +76,101 @@ let films = JSON.parse(request.response);
  }
 
 
+//Sort by length
 
-function compare(a){
- if(a < b ){
-  return a;
- }
- else if(b < a){
- return b;
- }
+function sortByLength(movieA, movieB){
+
+if(movieA.length < movieB.length){
+   return -1;
+}
+if(movieA.length > movieB.length){
+   return 1;
+}
+return 0;
+
 }
 
 
+function filterLength(){
+
+
+let request = new XMLHttpRequest();
+request.open("GET" ,"http://localhost:8080/api/films");
+request.setRequestHeader("Access-Control-Allow-Origin","*");
+request.send();
+
+request.onload = function(){
+let films = JSON.parse(request.response);
+
+ createTable();
+  
+ films.sort(sortByLength);
+
+
+ for(let j = 0; j < films.length; j++){
+
+ 
+   makeAllRows(films[j].title,
+       films[j].description,
+       films[j].release_year,
+       films[j].length,
+       films[j].rating );
+
+     
+ }
+
+}
+
+ }
+
+
+//Sort by Year
+
+function sortByYear(movieA, movieB){
+
+if(movieA.year < movieB.year){
+   return -1;
+}
+if(movieA.year > movieB.year){
+   return 1;
+}
+return 0;
+
+}
+
+
+
+function filterYear(){
+
+
+let request = new XMLHttpRequest();
+request.open("GET" ,"http://localhost:8080/api/films");
+request.setRequestHeader("Access-Control-Allow-Origin","*");
+request.send();
+
+request.onload = function(){
+let films = JSON.parse(request.response);
+
+ createTable();
+  
+ films.sort(sortByYear);
+
+
+ for(let j = 0; j < films.length; j++){
+
+ 
+   makeAllRows(films[j].title,
+       films[j].description,
+       films[j].release_year,
+       films[j].length,
+       films[j].rating );
+
+     
+ }
+
+}
+
+ }
 
 
 
